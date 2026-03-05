@@ -1,0 +1,39 @@
+# Maven
+target/
+*.jar
+*.war
+*.rar
+*.classpath
+.classpath
+
+# IDE
+.idea/
+*.iws
+*.iml
+*.ipr
+.settings/
+.project
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# File uploads
+/uploads/
+
+# Environment files
+.env
+.env.local
+
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+mvnw
+mvnw.cmd
