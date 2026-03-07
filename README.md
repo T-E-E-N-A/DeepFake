@@ -29,6 +29,7 @@ This project aims to solve these challenges by building a **secure, scalable, an
 ---
 
 ### Software
+- **Frontend Framework:** React+Vite 
 - **Backend Framework:** Spring Boot  
 - **Language:** Java  
 - **Database:** MySQL  
@@ -55,5 +56,3 @@ This project aims to solve these challenges by building a **secure, scalable, an
 
 ## ✅ Conclusion
 The **Fake Video Tracing and Verification System** provides a practical solution to combat digital misinformation. By leveraging **Spring Boot** for secure backend processing, the system ensures reliable video verification and traceability. With further enhancements, it can significantly contribute to building trust in digital media platforms.
-3. [Spring Boot Documentation](https://spring.io/projects/spring-boot)  
-4. [Java Platform Documentation](https://docs.oracle.com/javase/)  
