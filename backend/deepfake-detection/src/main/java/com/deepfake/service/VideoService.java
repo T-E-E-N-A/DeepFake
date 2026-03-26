@@ -22,10 +22,6 @@ public class VideoService {
 
     private final VideoRepository videoRepository;
 
-    public VideoService(VideoRepository videoRepository) {
-        this.videoRepository = videoRepository;
-    }
-
     public Video saveVideo(Video video) {
         return videoRepository.save(video);
     }

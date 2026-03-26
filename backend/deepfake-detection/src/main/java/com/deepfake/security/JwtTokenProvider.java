@@ -1,4 +1,4 @@
-package com.deepfake.service;
+package com.deepfake.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
