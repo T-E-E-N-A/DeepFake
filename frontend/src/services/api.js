@@ -8,33 +8,25 @@ function getAuthHeaders() {
   };
 }
 
-export async function loginUser(username, password) {
+export async function loginUser(email, password) {
   const res = await fetch(`${API_BASE}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify({ email, password }),
   });
-  if (!res.ok) {
-    const error = await res.json();
-    throw new Error(error.message || "Login failed");
-  }
+  if (!res.ok) throw new Error("Login failed");
   const data = await res.json();
   localStorage.setItem("jwt_token", data.token);
   return data;
 }
 
-export async function registerUser(username, email, password, confirmPassword) {
+export async function registerUser(name, email, password) {
   const res = await fetch(`${API_BASE}/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify({ username, email, password, confirmPassword }),
+    body: JSON.stringify({ name, email, password }),
   });
-  if (!res.ok) {
-    const error = await res.json();
-    throw new Error(error.message || "Registration failed");
-  }
+  if (!res.ok) throw new Error("Registration failed");
   return res.json();
 }
 
@@ -42,10 +34,9 @@ export async function uploadVideo(file) {
   const token = localStorage.getItem("jwt_token");
   const formData = new FormData();
   formData.append("video", file);
-  const res = await fetch(`${API_BASE}/detection/upload`, {
+  const res = await fetch(`${API_BASE}/videos/upload`, {
     method: "POST",
     headers: { Authorization: token ? `Bearer ${token}` : "" },
-    credentials: "include",
     body: formData,
   });
   if (!res.ok) throw new Error("Upload failed");
@@ -53,9 +44,8 @@ export async function uploadVideo(file) {
 }
 
 export async function getVideoResults(id) {
-  const res = await fetch(`${API_BASE}/detection/status/${id}`, {
+  const res = await fetch(`${API_BASE}/videos/results/${id}`, {
     headers: getAuthHeaders(),
-    credentials: "include",
   });
   if (!res.ok) throw new Error("Failed to fetch results");
   return res.json();

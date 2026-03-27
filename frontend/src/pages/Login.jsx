@@ -9,7 +9,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -20,11 +20,11 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      await login(username, password);
+      login({ email });
       toast.success("Welcome back!");
       navigate("/dashboard");
-    } catch (error) {
-      toast.error(error.message || "Invalid credentials. Please try again.");
+    } catch {
+      toast.error("Invalid credentials. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -52,13 +52,13 @@ export default function Login() {
           </div>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="username">Username</Label>
+              <Label htmlFor="email">Email</Label>
               <Input
-                id="username"
-                type="text"
-                placeholder="your_username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>

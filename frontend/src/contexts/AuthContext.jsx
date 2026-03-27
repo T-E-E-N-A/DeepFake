@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { loginUser, registerUser, isAuthenticated, logout as apiLogout } from "@/services/api";
+import { isAuthenticated, logout as apiLogout } from "@/services/api";
 
 const AuthContext = createContext(null);
 
@@ -14,16 +14,8 @@ export function AuthProvider({ children }) {
     setLoading(false);
   }, []);
 
-  const login = async (username, password) => {
-    const response = await loginUser(username, password);
-    setUser({ ...response, authenticated: true });
-    return response;
-  };
-
-  const register = async (username, email, password, confirmPassword) => {
-    const response = await registerUser(username, email, password, confirmPassword);
-    setUser({ ...response, authenticated: true });
-    return response;
+  const login = (userData) => {
+    setUser({ ...userData, authenticated: true });
   };
 
   const logout = () => {
@@ -32,7 +24,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
